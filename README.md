@@ -19,8 +19,8 @@ $redisClone->set('hello', 3);
 // Get
 $redisClone->get('smile'); // return 1
 $redisClone->get('sad'); // return 2
-$redisClone->get('goodbye'); // return NULL
-$redisClone->get('goodbye', 4); // return 4
+$redisClone->get('goodbye'); // return NULL, not exist
+$redisClone->get('goodbye', 'default'); // return 'default', you can set default value
 
 // Hset
 $redisClone->hset('mood', 'smile', 1);
@@ -30,8 +30,8 @@ $redisClone->hset('mood', 'hello', 3);
 //Hget
 $redisClone->hget('mood', 'smile'); // return 1
 $redisClone->hget('mood', 'sad'); // return 2
-$redisClone->hget('mood', 'goodbye'); // return NULL
-$redisClone->hget('mood', 'goodbye', 4); // return 4
+$redisClone->hget('mood', 'goodbye'); // return NULL, not exist
+$redisClone->hget('mood', 'goodbye', 'default'); // return 'default', you can set default value
 
 // Zadd
 $redisClone->zadd('fruits', 10, 'apple');
@@ -42,13 +42,13 @@ $redisClone->zadd('fruits', 15, 'cherry');
 $redisClone->zscore('fruits', 'apple'); // return 10
 $redisClone->zscore('fruits', 'banana'); // return 5
 $redisClone->zscore('fruits', 'cherry'); // return 15
-$redisClone->zscore('fruits', 'orange'); // return NULL
+$redisClone->zscore('fruits', 'orange'); // return NULL, not exist
 
 // Zrank
 $redisClone->zrank('fruits', 'apple'); // return 1
 $redisClone->zrank('fruits', 'banana'); // return 0
 $redisClone->zrank('fruits', 'cherry'); // return 2
-$redisClone->zrank('fruits', 'orange'); // return -1
+$redisClone->zrank('fruits', 'orange'); // return -1, not exist
 
 // Zrange
 $redisClone->zrange('fruits', 0, 1); // return ["banana"]
@@ -73,7 +73,7 @@ $hashTable->set('ski', 3);
 $hashTable->get('smile'); // return 1
 $hashTable->get('sad'); // return 2
 $hashTable->get('ski'); // return 3
-$hashTable->get('hello'); // return NULL
+$hashTable->get('hello'); // return NULL, not exist
 ```
 
 ## How to use SkipList standalone
@@ -90,13 +90,13 @@ $skipList->zadd(15, 'cherry');
 $skipList->zscore('apple'); // return 10
 $skipList->zscore('banana'); // return 5
 $skipList->zscore('cherry'); // return 15
-$skipList->zscore('orange'); // return NULL
+$skipList->zscore('orange'); // return NULL, not exist
 
 // Zrank
 $skipList->zrank('apple'); // return 1
 $skipList->zrank('banana'); // return 0
 $skipList->zrank('cherry'); // return 2
-$skipList->zrank('orange'); // return -1
+$skipList->zrank('orange'); // return -1, not exist
 
 // Zrange
 $skipList->zrange(0, 1); // return ["banana"]
